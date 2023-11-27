@@ -5,9 +5,20 @@ How I want to structure the project:
     Data from: Google's Big Query
     Collecting: tweets from Twitter
 
+2) Data filtering:
+    To start:
+        Filter out filler words (the, and, or,etc.)
 
 
-1a) Data model 
+    Later version to implement:
+        Use NLP model to determine if a tweet is positive/negative and the main context of the tweet
+            Filter out tweets that are about other areas of the park (i.e. attractions, rides, food, etc.)
+
+
+
+
+
+2a) Data model 
 Spreadsheet of entries where each entry is a tweet
 each row contains:
     AUTO_INCREMENT: tweetID (primary id)
@@ -19,6 +30,7 @@ each row contains:
     []: keywords (new table)
         will be a list of the key words in the tweet
             i.e. character names, locations, etc.
+            will referrence KEYWORDS table for the word, score
 
     enum location:
         1: Disneyland
@@ -27,21 +39,14 @@ each row contains:
             Note to self: can get more specific if wanted later
 
 
-another table:
-    Key
+another table named KEYWORDS:
+    TODO this needs to be rethought
+    foriegn key: tweetID 
+    string: word (the actual word)
+    float: score (-1 to 1 of how positive the word is)
+        intialized to 0, LATER function to provide with score and update table
 
 
-
-
-
-2) Data filtering:
-    To start:
-        Filter out filler words (the, and, or,etc.)
-
-
-    Later version to implement:
-        Use NLP model to determine if a tweet is positive/negative and the main context of the tweet
-            Filter out tweets that are about other areas of the park (i.e. attractions, rides, food, etc.)
 
 
 
